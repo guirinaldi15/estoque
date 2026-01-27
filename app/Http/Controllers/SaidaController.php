@@ -7,19 +7,22 @@ use Illuminate\Http\Request;
 
 class SaidaController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return response()->json(['mensagem' => 'Sistema de Controle de Estoque v1.0']);
     }
-    public function delete($id){
+    public function delete($id)
+    {
         $saida = Saida::find($id);
 
-        if($saida == null){
+        if ($saida == null) {
             return response()->json(['erro' => 'Saída não encontrada']);
         }
         $saida->delete();
         return response()->json(['mensagem' => 'Saída deletada com sucesso']);
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $saida = Saida::create([
             'produto_id' => $request->produto_id,
             'quantidade' => $request->quantidade,

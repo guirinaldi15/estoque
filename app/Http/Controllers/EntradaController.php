@@ -1,32 +1,33 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Entrada;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 
 class EntradaController extends Controller
 {
-    public function index(){
-        return response()->json(['mensagem' => 'Sistema de Controle de Estoque v1.0']);
-    }
-    public function delete($id){
-        $entrada = Entrada::find($id);
-
-        if($entrada == null){
-            return response()->json(['erro' => 'Entrada não encontrada']);
+    public function store(Request $request)
+    {
+        $produto = Produto::find($request->id_produto);
+        if ($produto == null) {
+            return response()->json(['erro' => 'Tarefa não encontrada']);
         }
-        $entrada->delete();
-        return response()->json(['mensagem' => 'Entrada deletada com sucesso']);
+        $entrada = Entrada::create([
+            'id_produto' => $request->produto,
+            'quantidade' => $request->quantidade
+        ]);
+        if (isset($request->quantidade)) {
+            $produto->quantidade_estoque = $request->quantidade + $produto->quantidade_estoque;
+        }
+        $produto->update();
+
+        return response()->json($entrada);
     }
-      public function store(Request $request){
-$entrada = Entrada::create([
-
-'produto_id' => $request->produto_id,
-'quantidade' => $request->quantidade
-]);
-
-return response()->json($entrada);
-
-}
+    public function index()
+    {
+        $entradas = Entrada::all();
+    }
 };
