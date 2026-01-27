@@ -13,3 +13,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('/cliente', [ClienteController::class, 'store']);
     Route::put('/cliente', [ClienteController::class, 'update']);
     Route::delete('/cliente/delete/{id}', [ClienteController::class, 'delete']);
+    Route::post('/entrada', [App\Http\Controllers\EntradaController::class, 'store']);
+    Route::delete('/entrada/delete/{id}', [App\Http\Controllers\EntradaController::class, 'delete']);
+    Route::post('/saida', [App\Http\Controllers\SaidaController::class, 'store']);
+    Route::delete('/saida/delete/{id}', [App\Http\Controllers\SaidaController::class, 'delete']);
