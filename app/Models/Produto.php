@@ -14,6 +14,6 @@ class Produto extends Model
 'descricao',
 'valor_unitario',
 'quantidade_estoque',
-'faixa_etaria_minima'
+'faixa_etaria_minima',
     ];
 }

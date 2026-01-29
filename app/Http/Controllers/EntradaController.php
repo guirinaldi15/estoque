@@ -17,7 +17,7 @@ class EntradaController extends Controller
             return response()->json(['erro' => 'Tarefa não encontrada']);
         }
         $entrada = Entrada::create([
-            'id_produto' => $request->produto,
+            'id_produto' => $request->id_produto,
             'quantidade' => $request->quantidade
         ]);
         if (isset($request->quantidade)) {

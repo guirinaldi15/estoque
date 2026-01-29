@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('descricao', 80);
             $table->integer('valor_unitario');
             $table->integer('quantidade_estoque');
-            $table->integer('faixa_earia_minima');
+            $table->integer('faixa_etaria_minima');
             $table->timestamps();
         });
     }
